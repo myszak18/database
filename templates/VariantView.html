@@ -20,7 +20,7 @@
                 <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
                 <link rel="stylesheet" href="/resources/demos/style.css" />
                 
-                <title>Variant Visualization</title>
+                <title>Variant Visualization {{gene}}</title>
                 <script src="http://d3js.org/d3.v2.min.js?2.10.0"></script>
                 
                 <style type="text/css">
@@ -226,6 +226,7 @@
         </head>
     
     <body>
+
     <div id="page-container">
         <div id= "main-nav" class="ui-widget">
             
@@ -235,6 +236,7 @@
                 <input id="tags" TYPE="text" NAME="inputbox" VALUE="" />
                 <INPUT TYPE="button" NAME="button" Value="Submit"onClick="showAndClearField(this.form)">
                 </FORM>
+                
             </div>
             
             <div style="float: right; width: 50%">
@@ -253,7 +255,10 @@
     <div id="gene_view" class="scroll">
         <svg id="compound-visualization" width="10000px" height="1000px">
         </svg>
+       
     </div>
+    
+  
     
     </body>
     

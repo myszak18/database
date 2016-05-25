@@ -9,25 +9,22 @@
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
 	<link href="../static/signup.css" rel="stylesheet">
     <script src="../static/js/jquery-2.2.3.min.js"></script>
-    <link href="//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
-	<script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
-	<script src="//code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
-	<script type="text/javascript">
-	$(function() {
-    $("#gene").autocomplete({
-        source:function(request, response) {
-            $.getJSON("{{url_for('autocomplete')}}",{
-                q: request.term, // in flask, "q" will be the argument to look for using request.args
-            }, function(data) {
-                response(data.matching_results); // matching_results from jsonify
-            });
-        },
-        minLength: 2,
-        select: function(event, ui) {
-            console.log(ui.item.value); // not in your question, but might help later
-        }
-    });
-})
+    <script>
+    function showHint(str) {
+    if (str.length == 0) { 
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+    } else {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "../static/gethint.php?q=" + str, true);
+        xmlhttp.send();
+    }
+}
 </script>
   </head>
  
@@ -48,10 +45,11 @@
       <div class="jumbotron">
         <h1>Polish Exome Database</h1>
         <form class="form-signin" action="/validateGene" method="post" >
-        <label for="gene" class="sr-only">Gene</label>
-        <input type="text" name="gene" id="gene" class="form-control" placeholder="HGNC gene symbol" required autofocus>
+        <label for="inputEmail" class="sr-only">Gene</label>
+        <input type="text" name="gene" id="gene" class="form-control" placeholder="HGNC gene symbol" required autofocus onkeyup="showHint(this.value)">
         <button id="btnSearch" class="btn btn-lg btn-primary btn-block" type="submit">Search Gene</button>
       </form>
+      <p>Suggestions: <span id="txtHint"></span></p>
       </div>
  
        

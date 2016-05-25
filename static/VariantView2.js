@@ -8,11 +8,11 @@
 window.onload = function() {
     // Load the Refgene KB:
     
-    g_ref_gene = loadCSV("static/refGene.csv");
+    g_ref_gene = loadCSV("/static/refGene.csv");
     
     
     // Load the Uniprot KB:
-    g_uni_prot = load_uniprot_file("static/uniprotIDFTREFSEQ.dat");
+    g_uni_prot = load_uniprot_file("/static/uniprotIDFTREFSEQ.dat");
     
     // This might get moved around depending on if we let users load their own files.
     // Load the variants:
@@ -462,7 +462,7 @@ var whitespace_removed_gl_var;
 function load_variant_data(){
     var gl_file = variant_file_name;
     
-    variant_data_gl = load_gl_("static/" + gl_file);
+    variant_data_gl = load_gl_("/static/" + gl_file);
     
     // remove the first line it's a header
     variant_data_gl.splice(0,1);
