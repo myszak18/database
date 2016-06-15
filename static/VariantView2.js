@@ -4283,7 +4283,7 @@ function generate_variant_list() {
     spacer += 20;
     var entry_spacer = 0
     var offset = 70;
-    var headings = ["Chrom", "Coordinate","Ref Base","Var Base", "dbSNP129", "dbSNP135","dbSNP137","MAF","Gene", "RefSeq ID", "Amino Acid Change"];    
+    var headings = ["Chrom", "Coordinate","Ref Base","Var Base", "rs", "MAF","HGNC","Cosmic","Gene", "RefSeq ID", "Amino Acid Change"];    
     for(i = 0; i < headings.length; i++){
         gene_model_display
         .append("text")

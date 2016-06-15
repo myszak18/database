@@ -7,8 +7,8 @@
  
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
  
-    <link href="http://getbootstrap.com/examples/jumbotron/jumbotron.css" rel="stylesheet">
- 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+	<script src="../static/sorttable.js"></script>
  
 </head>
  
@@ -18,7 +18,7 @@
         <div class="header">
             <nav>
                 <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="active"><a href="#">Home</a>
+                  <li role="presentation" class="active"><a href="#">Home</a>
                     </li>
                     <li role="presentation"><a href="/searchGene">Search by Gene</a>
                     </li>
@@ -26,21 +26,38 @@
                     </li>
                      <li role="presentation"><a href="/searchTableGene">Search by Gene (Table View)</a>
                     </li>
-                    <li role="presentation"><a href="/downloadTable">Download Positions</a>
-                    </li>
                 </ul>
             </nav>
             <h3 class="text-muted">Polish Exome Database</h3>
         </div>
  
         <div class="jumbotron">
-            <h1>Polish Exome Database</h1>
-            <p class="lead"></p>
-            <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Enter</a>
-            </p>
+           <table style="width:100%" class="sortable">
+			   <caption>Variants by position</caption>
+		  <thead>
+			<th>CHROM</th>
+			<th>Position</th>
+			<th>MAF</th>
+			<th>RS</th>
+			<th>Gene</th>
+			<th>Amino acid change</th>
+		</thead>
+		<tbody>
+			{% for variant in variants %}
+			<tr>
+				<td align="left">{{variant.chrom}}</td>
+				<td align="left">{{variant.position}}</td>
+				<td align="left">{{variant.maf}}</td>
+				<td align="left">{{variant.rs}}</td>
+				<td align="left">{{variant.gene}}</td>
+				<td align="left">{{variant.change}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+		</table>  
         </div>
+		
  
-     
  
         <footer class="footer">
             <p>&copy; Company 2015</p>

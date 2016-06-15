@@ -14,15 +14,15 @@
 	<script src="//code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
 	<script type="text/javascript">
 	$(function() {
-    $("#gene").autocomplete({
+    $("#position").autocomplete({
         source:function(request, response) {
-            $.getJSON("{{url_for('autocomplete')}}",{
+            $.getJSON("{{url_for('autocompletepos')}}",{
                 q: request.term, // in flask, "q" will be the argument to look for using request.args
             }, function(data) {
                 response(data.matching_results); // matching_results from jsonify
             });
         },
-        minLength: 2,
+        minLength: 3,
         select: function(event, ui) {
             console.log(ui.item.value); // not in your question, but might help later
         }
@@ -37,7 +37,7 @@
       <div class="header">
         <nav>
           <ul class="nav nav-pills pull-right">
-      <li role="presentation" class="active"><a href="/">Home</a>
+          <li role="presentation" class="active"><a href="#">Home</a>
                     </li>
                     <li role="presentation"><a href="/searchGene">Search by Gene</a>
                     </li>
@@ -52,10 +52,10 @@
  
       <div class="jumbotron">
         <h1>Polish Exome Database</h1>
-        <form class="form-signin" action="/validateGene" method="post" >
-        <label for="gene" class="sr-only">Gene</label>
-        <input type="text" name="gene" id="gene" class="form-control" placeholder="HGNC gene symbol" required autofocus>
-        <button id="btnSearch" class="btn btn-lg btn-primary btn-block" type="submit">Search Gene</button>
+        <form class="form-signin" action="/validatePosition" method="post" >
+        <label for="position" class="sr-only">Position</label>
+        <input type="text" name="position" id="position" class="form-control" placeholder="Position in hg19" required autofocus>
+        <button id="btnSearch" class="btn btn-lg btn-primary btn-block" type="submit">Search by position</button>
       </form>
       </div>
  
